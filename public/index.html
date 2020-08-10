@@ -1,17 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<html lang="ko" class="full-screen">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <!--  <link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
+  <!--  <title><%= htmlWebpackPlugin.options.title %></title>-->
+  <style>
+    .full-screen {
+      width: 100%;
+      height: 100%;
+    }
+
+    .center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body class="full-screen" style="margin: 0;">
+<div id="app"></div>
+
+<div id="sub-app" class="full-screen center" style="text-shadow: 0 0 3em aqua; box-shadow: inset 0 0 30em 0 aqua;">
+  <span>Created Vue instance!</span>
+  <GlobalComponent></GlobalComponent> <!-- HTML 파일에 컴포넌트를 선언할 때, Pascal case로 적으면 인식하지 못한다. -->
+  <local-component2></local-component2>
+</div>
+
+<script src="./js/app.js"></script>
+</body>
+
 </html>
