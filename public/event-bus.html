@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Event Bus</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+  <child-component></child-component>
+</div>
+
+<script>
+  // 이벤트버스를 정의한다.
+  const eventBus = new Vue();
+
+  Vue.component('child-component', {
+    template: `
+      <div>
+        <button @click="printLog">print log</button>
+      </div>
+    `,
+    methods: {
+      printLog() {
+        // 데이터를 전달한다.
+        eventBus.$emit('triggerEventBus', new Date().toLocaleString());
+      },
+    },
+  });
+
+  const app = new Vue({
+    el: '#app',
+    created() {
+      // 데이터를 받는다.
+      eventBus.$on('triggerEventBus', val => console.log(val));
+    },
+  });
+</script>
+</body>
+</html>
