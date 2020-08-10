@@ -16,7 +16,7 @@ const LocalComponent = {
 // 다른 컴포넌트의 data를 참조하는 지역 컴포넌트를 정의한다.
 const LocalComponent2 = {
   template: '<div>LocalComponent2: {{ index }}</div>',
-  data: LocalComponent.data,
+  data: LocalComponent.data, // `LocalComponent.data().index`로 참조할 수 없다. ∵ 컴포넌트 고유의 스코프 때문
 };
 
 /**
