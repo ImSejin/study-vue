@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Vue Router</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router@3.4.2/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+  <h1>vue-router example</h1>
+  <p>
+    <router-link to="/main">go to index.html</router-link>
+    <router-link to="/login">go to event-bus.html</router-link>
+  </p>
+
+  <!-- router uri의 값에 따라 화면을 전환한다. -->
+  <router-view></router-view>
+</div>
+
+<script>
+  // 컴포넌트를 정의한다.
+  const Main = {template: `<div>Main</div>`};
+  const Login = {template: `<div>Login</div>`};
+
+  // URI에 맞춰 보여줄 컴포넌트를 지정한다.
+  const router = new VueRouter({
+    routes: [
+      {path: '/main', component: Main},
+      {path: '/login', component: Login},
+    ],
+    mode: 'history', // 해시 값을 사라지게 할 수 있다.
+  });
+
+  const app = new Vue({
+    router
+  }).$mount('#app');
+
+</script>
+</body>
+</html>
