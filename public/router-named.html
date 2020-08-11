@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" class="full-screen center">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Vue Named Router</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+  <style>
+    .full-screen {
+      width: 100%;
+      height: 100%;
+    }
+
+    .center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #app {
+      border: 2px dotted black;
+      min-width: 50rem;
+      min-height: 30rem;
+      text-align: center;
+    }
+
+    .button {
+      margin: 0.25rem;
+      border: 1px solid cornflowerblue;
+      border-radius: 0.5rem;
+      padding: 0.5rem;
+      background-color: aliceblue;
+      text-decoration: none;
+      font-weight: bold;
+      color: cornflowerblue;
+    }
+  </style>
+</head>
+
+<body>
+<div id="app" class="center">
+  <!-- router-link에 @click이 안 먹히는 건가..? -->
+  <router-link to="/login" v-if="!this.logined" class="button">Login</router-link>
+  <router-link to="/" v-else class="button">Logout</router-link>
+  <router-view name="header"></router-view>
+  <router-view></router-view> <!-- name이 없는 router-view는 default -->
+  <router-view name="footer"></router-view>
+</div>
+
+<script type="module">
+  import {routes} from './js/router-named.mjs';
+
+  const router = new VueRouter({
+    routes,
+  });
+  const app = new Vue({
+    router,
+    data() {
+      return {
+        logined: false,
+      };
+    },
+
+    methods: {
+      login(val) {
+        console.log('val', val);
+        this.logined = val;
+      }
+    }
+  }).$mount('#app');
+</script>
+</body>
+</html>
