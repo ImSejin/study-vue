@@ -25,7 +25,7 @@ const LocalComponent2 = {
 new Vue({
   el: '#app',
   template: `
-    <div class="full-screen center" style="text-shadow: 0 0 3em orangered; box-shadow: inset 0 0 30em 0 orangered;">
+    <div class="full-screen center">
       <span>Created Vue instance!</span>
       <GlobalComponent></GlobalComponent>
       <LocalComponent></LocalComponent>

@@ -7,26 +7,29 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <!--  <link rel="icon" href="<%= BASE_URL %>favicon.ico">-->
   <!--  <title><%= htmlWebpackPlugin.options.title %></title>-->
+  <link rel="stylesheet" href="./css/main.css">
   <style>
-    .full-screen {
-      width: 100%;
-      height: 100%;
+    body {
+      margin: 0;
     }
 
-    .center {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center
+    #app {
+      text-shadow: 0 0 3em orangered;
+      box-shadow: inset 0 0 30em 0 orangered;
+    }
+
+    #sub-app {
+      text-shadow: 0 0 3em aqua;
+      box-shadow: inset 0 0 30em 0 aqua;
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
-<body class="full-screen" style="margin: 0;">
+<body class="full-screen">
 <div id="app"></div>
 
-<div id="sub-app" class="full-screen center" style="text-shadow: 0 0 3em aqua; box-shadow: inset 0 0 30em 0 aqua;">
+<div id="sub-app" class="full-screen center">
   <span>Created Vue instance!</span>
   <GlobalComponent></GlobalComponent> <!-- HTML 파일에 컴포넌트를 선언할 때, Pascal case로 적으면 인식하지 못한다. -->
   <local-component2></local-component2>
