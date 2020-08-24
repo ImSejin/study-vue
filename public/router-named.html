@@ -37,10 +37,30 @@
       font-weight: bold;
       color: cornflowerblue;
     }
+
+    .list {
+      border: 1px dotted black;
+      width: 300px;
+    }
+
+    .ellipsis {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* 라인수 */
+      -webkit-box-orient: vertical;
+      word-wrap: break-spaces;
+    }
   </style>
 </head>
 
 <body>
+
+<ul>
+  <li class="list ellipsis">[tvN] 응답하라 1994.E21.END.131227.HDTV.H264.720p-WITH</li>
+  <li class="list">[tvN] 응답하라 1994.E21.END.131227.HDTV.H264.720p-WITH</li>
+</ul>
+
 <div id="app" class="center">
   <!-- router-link에 @click이 안 먹히는 건가..? -->
   <router-link to="/login" v-if="!this.logined" class="button">Login</router-link>
