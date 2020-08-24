@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>HTTP Request</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource/dist/vue-resource.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.js"></script>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+  new Vue({
+    template: `
+      <div>
+        <button @click="fetchDataByVueResource">get frameworks by vue-resource</button>
+        <button @click="fetchDataByAxios">get frameworks by axios</button>
+        <ul>
+          <li v-for="(value, index) in frameworks.front" :key="index">{{value}}</li>
+        </ul>
+        <ul>
+          <li v-for="(value, index) in frameworks.back" :key="index">{{value}}</li>
+        </ul>
+      </div>
+    `,
+
+    data() {
+      return {
+        frameworks: {
+          front: [],
+          back: [],
+        },
+      };
+    },
+
+    methods: {
+      async fetchDataByVueResource() {
+        // { "fe1": "Angular", "fe2": "React", "fe3": "Vue.js", "fe4": "Backbone.js", "be1": "Spring", "be2": "Django", "be3": "Node.js" }
+        const {body} = await this.$http.get('https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json');
+
+        Object.entries(body).forEach(([key, value]) => {
+          if (key.startsWith('fe')) this.frameworks.front.push(value);
+          else if (key.startsWith('be')) this.frameworks.back.push(value);
+        });
+      },
+
+      async fetchDataByAxios() {
+        // { "fe1": "Angular", "fe2": "React", "fe3": "Vue.js", "fe4": "Backbone.js", "be1": "Spring", "be2": "Django", "be3": "Node.js" }
+        const {data} = await axios.get('https://raw.githubusercontent.com/joshua1988/doit-vuejs/master/data/demo.json');
+
+        Object.entries(data).forEach(([key, value]) => {
+          if (key.startsWith('fe')) this.frameworks.front.push(value);
+          else if (key.startsWith('be')) this.frameworks.back.push(value);
+        });
+      },
+
+    },
+  }).$mount('#app');
+</script>
+</body>
+</html>
